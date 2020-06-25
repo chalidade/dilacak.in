@@ -6,6 +6,8 @@ include "../config/setting.php";
 
 // include function
 include "login.php";
+include "order.php";
+
 
 //Get From Request
 $id     = $_REQUEST['id'];

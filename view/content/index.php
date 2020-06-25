@@ -18,9 +18,9 @@
       <input style="font-size:12px" type="text" name="USER_PHONE" class="form-control" value="" placeholder="Phone Number"><br>
       <select class="form-control" name="USER_ROLE" style="font-size:12px">
         <option selected disabled>-- Pilih Akun --</option>
-        <option value="1">Pengguna Tracking</option>
-        <option value="2">Marketing</option>
-        <option value="3">Teknisi</option>
+        <option value="0">Pengguna Tracking</option>
+        <option value="1">Marketing</option>
+        <option value="2">Teknisi</option>
       </select><br>
       <textarea class="form-control" name="USER_ADDRESS" rows="5" cols="80" placeholder="Alamat" style="font-size:12px"></textarea> <br>
       <input style="font-size:12px" type="text" name="USER_EMAIL" class="form-control" value="" placeholder="Email"><br>

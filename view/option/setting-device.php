@@ -6,7 +6,11 @@
   <div class="row p-side-20">
     <table style="font-size:12px;width:100%">
       <?php
-        $vehicles    = mysqli_query($mysqli, "SELECT * FROM `tx_vehicles`");
+        $userId      = $session["USER_ID"];
+        $vehicles    = mysqli_query($mysqli, "SELECT * FROM `tx_vehicles` WHERE `VEHICLES_USER` = '$userId'");
+        if (empty($vehicles->num_rows)) {
+          echo "Data Kendaraan Kosong";
+        }
         while ($data = mysqli_fetch_array($vehicles)) {
       ?>
       <tr>

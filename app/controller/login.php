@@ -1,6 +1,5 @@
 <?php
 // Include Model
-session_start();
 include "../model/login.php";
 
 
