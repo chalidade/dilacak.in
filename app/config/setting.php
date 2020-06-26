@@ -1,7 +1,10 @@
 <?php
 // Session
 session_start();
-$session = json_decode($_SESSION["USER"], TRUE);
+if (isset($_SESSION["USER"])) {
+  $session = json_decode($_SESSION["USER"], TRUE);
+  $session["USER_ROLE"] = $session["USER_ROLE"];
+}
 
 // Get Page
 if (isset($_REQUEST["page"])) {
@@ -15,6 +18,5 @@ if (isset($_REQUEST['loader'])) include "view/option/loader.php";
 
 // Temporary
 
-$session["USER_ROLE"] = $session["USER_ROLE"];
 $number = "+6285784566522";
    ?>

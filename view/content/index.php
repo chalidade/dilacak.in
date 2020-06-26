@@ -1,3 +1,6 @@
+<?php
+  session_destroy();
+ ?>
 <div class="container-login animate__animated animate__fadeIn" id="login" style="display:block">
     <img src="assets/img/logo.png" style="width:200px" alt="">
     <p>Keep Your Vehicle Safe and Track</p>

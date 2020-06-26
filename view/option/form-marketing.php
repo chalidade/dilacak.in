@@ -22,14 +22,14 @@
         <?php
           $userId = $session["USER_ID"];
           $no     = 1;
-          $query  = mysqli_query($mysqli, "SELECT * FROM `tx_hdr_order` WHERE `ORDER_USER` = '$userId'");
+          $query  = mysqli_query($mysqli, "SELECT * FROM `tx_hdr_order` A LEFT JOIN `tm_reff` B ON A.`ORDER_STATUS` = B.`REFF_ID` WHERE B.`REFF_TR_ID` = '1' AND `ORDER_USER` = '$userId'");
           while($order = mysqli_fetch_array($query)) {
         ?>
         <tr style="text-align:center">
           <td><?php echo $no;$no++; ?></td>
           <td><?php echo $order["ORDER_NAME"]; ?></td>
           <!-- <td><?php //echo date('d/m/Y', strtotime($order["ORDER_DATE"])); ?></td> -->
-          <td>On Process</td>
+          <td><?php echo $order["REFF_NAME"]; ?></td>
           <td style="text-align:center">
             <a data-toggle="modal" data-target="#view<?php echo $no; ?>">View</a>
             <div class="modal fade" id="view<?php echo $no; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align:left">
@@ -146,8 +146,7 @@
                   <label for="tanggal" style="width:100%">
                     <b>Total Pemasangan</b>
                     <input type="text" class="form-control" placeholder="5" name="ORDER_TOTAL" style="font-size:12px;margin-top:5px">
-                    <input type="hidden" name="ORDER_USER" value="<?php $session["USER_ID"]; ?>">
-
+                    <input type="hidden" name="ORDER_USER" value="<?php echo $session["USER_ID"]; ?>">
                   </label>
                 </td>
               </tr>

@@ -16,19 +16,20 @@
       <tr>
         <td style="width:64%">
           <h2 style="font-size:14px;font-weight:700;padding-top:10px"><?php echo $data["VEHICLES_NAME"]; ?></h2>
-          <p style="font-size:10px;"><?php echo $data["VEHICLES_PLAT_NO"]; ?>
+          <p style="font-size:10px;"><?php echo $data["VEHICLES_PLAT_NO"]; ?> |
             <?php
-            if ($data["VEHICLES_ACTIVE"] == "1") {
-              echo "<span class='bg-success bubble text-light'>Active</span>";
-            } else {
-              echo "<span class='bg-danger bubble text-light'>Non-Active</span>";
-            }
+              echo "<span class='bg-success bubble text-light'>".$data["VEHICLES_PHONE"]."</span>";
+            // if ($data["VEHICLES_ACTIVE"] == "1") {
+            //   echo "<span class='bg-success bubble text-light'>Active</span>";
+            // } else {
+            //   echo "<span class='bg-danger bubble text-light'>Non-Active</span>";
+            // }
             ?>
           </p>
         </td>
-        <td style="width:12%;vertical-align:middle"><a href="sms:<?php echo $data["VEHICLES_PHONE"]; ?>?body=RELAY,1#"> <img src="assets/img/off.png" style="width:30px" alt=""></a></td>
-        <td style="width:12%;vertical-align:middle;"><a href="sms:<?php echo $data["VEHICLES_PHONE"]; ?>?body=RELAY,0#"><img src="assets/img/on.png" style="width:30px" alt=""></a></td>
-        <td style="width:12%;vertical-align:middle"><a href="sms:<?php echo $data["VEHICLES_PHONE"]; ?>?body=URL#"><img src="assets/img/globe.png" style="width:20px" alt=""></a></td>
+        <td style="width:12%;vertical-align:middle"><a onclick="alert('Tambahkan tanda pagar # untuk konfirmasi')" href="sms:<?php echo $data["VEHICLES_PHONE"]; ?>?body=RELAY,1#"> <img src="assets/img/off.png" style="width:30px" alt=""></a></td>
+        <td style="width:12%;vertical-align:middle;"><a onclick="alert('Tambahkan tanda pagar # untuk konfirmasi')" href="sms:<?php echo $data["VEHICLES_PHONE"]; ?>?body=RELAY,0#"><img src="assets/img/on.png" style="width:30px" alt=""></a></td>
+        <td style="width:12%;vertical-align:middle"><a href="tel:<?php echo $data["VEHICLES_PHONE"]; ?>"><img src="assets/img/phone.png" style="width:15px" alt=""></a></td>
       </tr>
       <?php } ?>
     </table>
