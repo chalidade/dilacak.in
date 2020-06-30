@@ -1,10 +1,14 @@
 <div class="container">
   <table width="100%">
     <tr>
-      <td style="vertical-align:middle"><h1 class="sub-title">Form Pemesanan</h1></td>
-      <td>
-        <button class="btn blue-light-bg text-light" data-toggle="modal" data-target="#addNew" style="font-size:12px;width:100%">+ New</button>
-      </td>
+      <?php if ($session["USER_ROLE"] == "1"){ ?>
+        <td style="vertical-align:middle"><h1 class="sub-title">Form Pemesanan</h1></td>
+        <td>
+          <button class="btn blue-light-bg text-light" data-toggle="modal" data-target="#addNew" style="font-size:12px;width:100%">+ New</button>
+        </td>
+      <?php } else { ?>
+        <td style="vertical-align:middle"><h1 class="sub-title">List Pemasangan</h1></td>
+      <?php }?>
     </tr>
   </table>
   <hr>
@@ -15,21 +19,24 @@
         <tr style="text-align:center">
           <th>NO</th>
           <th>NAMA</th>
-          <!-- <th>TANGGAL</th> -->
-          <th>STATUS</th>
+          <?php if ($session["USER_ROLE"] == "1") { ?>
+            <th>STATUS</th>
+          <?php } else { ?>
+            <th>TANGGAL</th>
+          <?php } ?>
           <th>OPTION</th>
         </tr>
         <?php
           $userId = $session["USER_ID"];
           $no     = 1;
-          $query  = mysqli_query($mysqli, "SELECT * FROM `tx_hdr_order` A LEFT JOIN `tm_reff` B ON A.`ORDER_STATUS` = B.`REFF_ID` WHERE B.`REFF_TR_ID` = '1' AND `ORDER_USER` = '$userId'");
+          $query  = mysqli_query($mysqli, "SELECT * FROM `tx_hdr_order` A LEFT JOIN `tm_reff` B ON A.`ORDER_STATUS` = B.`REFF_ID` WHERE `ORDER_STATUS` = '2' AND B.`REFF_TR_ID` = '1'");
           while($order = mysqli_fetch_array($query)) {
         ?>
         <tr style="text-align:center">
           <td><?php echo $no;$no++; ?></td>
           <td><?php echo $order["ORDER_NAME"]; ?></td>
           <!-- <td><?php //echo date('d/m/Y', strtotime($order["ORDER_DATE"])); ?></td> -->
-          <td><?php echo $order["REFF_NAME"]; ?></td>
+          <td><?php echo $order["ORDER_PEMASANGAN"]; ?></td>
           <td style="text-align:center">
             <a data-toggle="modal" data-target="#view<?php echo $no; ?>">View</a>
             <div class="modal fade" id="view<?php echo $no; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align:left">
@@ -73,7 +80,6 @@
                                 <b>Total Pemasangan</b>
                                 <input type="text" class="form-control" placeholder="5" value="<?php echo $order["ORDER_TOTAL"]; ?>" name="ORDER_TOTAL" style="font-size:12px;margin-top:5px">
                                 <input type="hidden" value="<?php echo $order["ORDER_USER"]; ?>" name="ORDER_USER" value="<?php $session["USER_ID"]; ?>">
-
                               </label>
                             </td>
                           </tr>
@@ -86,6 +92,12 @@
                           <b>Alamat</b>
                           <textarea class="form-control" placeholder="Dsn Ngelawang Watukosek, Gempol, Pasuruan" name="ORDER_ADDRESS" style="font-size:12px;margin-top:5px;height:50px"><?php echo $order["ORDER_ADDRESS"]; ?></textarea>
                         </label>
+                      </form>
+                      <hr>
+                      <form action="app/controller/main.php?id=updateTenisi" method="post">
+                        <input type="hidden" name="ORDER_TEKNISI" value="<?php echo $session["USER_ID"]; ?>">
+                        <input type="hidden" name="ORDER_ID" value="<?php echo $order["ORDER_ID"]; ?>">
+                        <input type="submit" class="btn btn-success" value="Done" style="width:100%">
                       </form>
                     </div>
                   </div>

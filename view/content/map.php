@@ -4,6 +4,8 @@
     echo '<iframe style="width:100%;min-height:620px;border:none;margin-top: -20px;" src="http://demo.traccar.org/">';
   } else if ($session["USER_ROLE"] == "1") {
     include "view/option/marketingDasboard.php";
+  } else if ($session["USER_ROLE"] == "2") {
+    include "view/option/marketingDasboard.php";
   }
  ?>
 </div>

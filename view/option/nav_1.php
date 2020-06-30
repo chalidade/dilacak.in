@@ -31,6 +31,17 @@
         <img src="assets/img/maintenance.png" style="width:28px" alt="">
       </a>
     </div>
+  <?php } else if ($session["USER_ROLE"] == '2') {?>
+    <div class="col-4">
+      <a href="?page=map">
+        <img src="assets/img/pie-chart.png" style="width:28px" alt="">
+      </a>
+    </div>
+    <div class="col-4">
+      <a href="?page=device">
+        <img src="assets/img/maintenance.png" style="width:28px" alt="">
+      </a>
+    </div>
   <?php } ?>
   <div class="col-4">
     <a href="?page=user">
